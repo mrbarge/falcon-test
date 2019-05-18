@@ -1,4 +1,6 @@
+#!/bin/env python
 import falcon
+from wsgiref import simple_server
 
 
 class ThingsResource(object):
@@ -18,3 +20,7 @@ things = ThingsResource()
 
 # things will handle all requests to the '/things' URL path
 app.add_route('/things', things)
+
+if __name__ == '__main__':
+	http = simple_server.make_server('0.0.0.0', 8080, app)
+	http.serve_forever()
